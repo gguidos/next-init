@@ -1,15 +1,12 @@
-import MaxWidthWrapper from '@/components/MaxWidthWrapper'
-import { ProfileForm } from '@/components/RegisterClient'
+import { redirect } from 'next/navigation'
+import RegisterForm from '@/components/user/RegisterForm'
+import { cookies } from 'next/headers'
 
-const Page = () => {
-	const mainClasses =
-		'mb-12 mt-14 sm:mt-20 w-4/6 items-center justify-center text-left'
+export default () => {
+    const cookieStore = cookies();
+    const token = cookieStore.get('token');
 
-	return (
-		<MaxWidthWrapper className={mainClasses}>
-			<ProfileForm source='registration' />
-		</MaxWidthWrapper>
-	)
+	if (token) redirect('/dashboard');
+
+    return (<RegisterForm />)
 }
-
-export default Page

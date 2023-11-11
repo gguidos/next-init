@@ -1,7 +1,6 @@
 
 import { Config } from 'tailwindcss'
-import { shadcnPlugin } from './src/lib/shadcn-plugin'
-import { shadcnPreset } from './src/lib/shadcn-preset'
+import { shadcnPreset } from './src/lib/shadcn/shadcn-preset'
 
 const config = {
   presets: [shadcnPreset],

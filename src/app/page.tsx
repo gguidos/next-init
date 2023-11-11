@@ -1,6 +1,3 @@
-import { ModeToggle } from '@/components/ThemeSwitch'
-
-import MaxWidthWrapper from '@/components/MaxWidthWrapper'
 import Link from 'next/link'
 import Image from 'next/image'
 import { ArrowRight } from 'lucide-react'
@@ -13,32 +10,29 @@ export default function Home() {
 
 	return (
 		<>
-			<MaxWidthWrapper className={mainClasses}>
-        <ModeToggle />
-				<div className={subMainClasses}>
-					<p className="text-sm font-semibold text-gray-700">
-						Quill is now public!
-					</p>
-				</div>
-				<h1 className="text-5xl, max-w-4xl font-bold md:text-6xl lg:text-7xl">
-					chat with your <span className="text-blue-600">documents</span> in
-					seconds!
-				</h1>
-				<p className="mt-5 max-w-prose text-zinc-700 sm:text-lg">
-					Quill allows you to have conversations with any PDF document. Simply
-					upload your file and start asking questions right away
+			<div className={subMainClasses}>
+				<p className="text-sm font-semibold text-gray-700">
+					Quill is now public!
 				</p>
-				<Link
-					className={buttonVariants({
-						size: 'lg',
-						className: 'mt-5',
-					})}
-					href="/dashboard"
-					target="_blank"
-				>
-					Get Started <ArrowRight className="ml-2 h-5 w-5" />
-				</Link>
-			</MaxWidthWrapper>
+			</div>
+			<h1 className="text-5xl, max-w-4xl font-bold md:text-6xl lg:text-7xl">
+				chat with your <span className="text-blue-600">documents</span> in
+				seconds!
+			</h1>
+			<p className="mt-5 max-w-prose text-zinc-700 sm:text-lg">
+				Quill allows you to have conversations with any PDF document. Simply
+				upload your file and start asking questions right away
+			</p>
+			<Link
+				className={buttonVariants({
+					size: 'lg',
+					className: 'mt-5',
+				})}
+				href="/dashboard"
+				target="_blank"
+			>
+				Get Started <ArrowRight className="ml-2 h-5 w-5" />
+			</Link>
 
 			{/* value proposition section */}
 			<div>
