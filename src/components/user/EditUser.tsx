@@ -1,15 +1,13 @@
+
 'use client'
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import * as z from 'zod'
-import formSchema from '@/lib/validations/user/user-signin-form'
+import formSchema from '@/lib/validations/user/user-registration-form'
+
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import redirect from '@/lib/server-actions/redirect'
-
-import setSessionCookie from '@/lib/server-actions/set-session-cookie'
-
 import {
 	Form,
 	FormControl,
@@ -19,35 +17,21 @@ import {
 	FormLabel,
 	FormMessage,
 } from '@/components/ui/form'
-import fetch from '@/lib/server-actions/fetch'
 
-export default function SigninForm() {
+export default function Registration() {
+	
 	const form = useForm<z.infer<typeof formSchema>>({
 		resolver: zodResolver(formSchema),
 		defaultValues: {
 			username: '',
-			password: ''
+			password: '',
+            email: '',
 		},
 	})
 
-	async function onSubmit(values: z.infer<typeof formSchema>) {
-		let success = false;
-
-		try {
-			const res = await fetch({
-				path: 'http://localhost:3005/api/v1/services/auth',
-				method: 'post',
-				data: values,
-				cache: 'no-store'
-			})
-
-			if (res.error) throw res.data
-			setSessionCookie({data: res.data })
-			success = true
-		} catch (err) {
-			console.log(err)
-		}
-		if (success) redirect('/dashboard')
+	function onSubmit(values: z.infer<typeof formSchema>) {
+	
+		console.log(values)
 	}
 
 	return (
@@ -80,6 +64,23 @@ export default function SigninForm() {
 							</FormControl>
 							<FormDescription>
 								Type a password
+                            </FormDescription>
+							<FormMessage />
+						</FormItem>
+					)}
+				/>
+
+                <FormField
+					control={form.control}
+					name="email"
+					render={({ field }) => (
+						<FormItem>
+							<FormLabel>Email</FormLabel>
+							<FormControl>
+								<Input type='email' {...field} />
+							</FormControl>
+							<FormDescription>
+								Type your email
                             </FormDescription>
 							<FormMessage />
 						</FormItem>
